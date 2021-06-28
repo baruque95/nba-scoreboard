@@ -205,7 +205,7 @@ const teams = [
     "confName": "West",
     "divName": "Pacific",
     "mainColours" : ["#ffffff"],
-    "teamLogo" : ""
+    "teamLogo" : "https://images.vexels.com/media/users/3/131274/isolated/preview/011ec17eae5ff9688d23005ad61bf1a8-logotipo-de-clippers-de-los-angeles-by-vexels.png"
   },
   {
     "isNBAFranchise": true,
