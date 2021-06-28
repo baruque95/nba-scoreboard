@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Placar NBA</title>
-    <link rel="stylesheet" href="placar.css">
+    <link rel="stylesheet" href="placar.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="teams.js" ></script>
-</head>
-<body>
-    <table width=600px class="placar">
-        <tr>
-            <td width=25% class="teamCards" id="homeTeam"></td>
-            <td width=25% class="teamCards" id="homeTeamScore"></td>
-            <td width=25% class="teamCards" id="visitorTeam"></td>
-            <td width=25% class="teamCards" id="visitorTeamScore"></td>
-        </tr>
+    <script src="teams.js"></script>
+  </head>
+  <body>
+    <table width="600px" class="placar">
+      <tr>
+        <td width="25%" class="teamCards" id="homeTeam"></td>
+        <td width="25%" class="teamCards" id="homeTeamScore"></td>
+        <td width="25%" class="teamCards" id="visitorTeam"></td>
+        <td width="25%" class="teamCards" id="visitorTeamScore"></td>
+      </tr>
     </table>
     <script>
-        const dateString = getFormattedDate();
-        const board = $('.placar');
+      const dateString = getFormattedDate();
+      const board = $(".placar");
 
-        function initBoard()
-        {
-            $.get(
-                `http://data.nba.net/10s/prod/v1/${dateString}/scoreboard.json`,
-                ( data ) => {
-                    const activeGameData  = data.games.find((game)=>{
-                        return game.isGameActivated;
-                    });
-                    if(!activeGameData){
-                        console.alert('Nenhum jogo ativo no momento.');
-                        return;
-                    }
-                    const hTeamData = activeGameData.hTeam;
-                    const vTeamData = activeGameData.vTeam;
-                    const hTeam = teams.find((team) =>{ return team.teamId == hTeamData.teamId});
-                    const vTeam = teams.find((team) =>{ return team.teamId == vTeamData.teamId});
-                    const hTeamBoard = board.find('#homeTeam');
-                    const vTeamBoard = board.find('#visitorTeam');
-                    hTeamBoard.text(activeGameData.hTeam.triCode);
-                    hTeamBoard.css('background-image', getTeamCardCss(hTeam.teamLogo));
-                    hTeamBoard.css('background-color', hTeam.mainColours[0]);
-                    vTeamBoard.text(activeGameData.vTeam.triCode);
-                    vTeamBoard.css('background-image', getTeamCardCss(vTeam.teamLogo));
-                    vTeamBoard.css('background-color', vTeam.mainColours[0]);
-                    board.find('#homeTeamScore').text(hTeamData.score);
-                    board.find('#visitorTeamScore').text(vTeamData.score);
-                    updateScore();
-                }
-            );
-        }
+      function initBoard() {
+        $.get(
+          `http://data.nba.net/10s/prod/v1/${dateString}/scoreboard.json`,
+          (data) => {
+            const activeGameData = data.games.find((game) => {
+              return game.isGameActivated;
+            });
+            if (!activeGameData) {
+              alert("Nenhum jogo ativo no momento.");
+              return;
+            }
+            const hTeamData = activeGameData.hTeam;
+            const vTeamData = activeGameData.vTeam;
+            const hTeam = teams.find((team) => {
+              return team.teamId == hTeamData.teamId;
+            });
+            const vTeam = teams.find((team) => {
+              return team.teamId == vTeamData.teamId;
+            });
+            const hTeamBoard = board.find("#homeTeam");
+            const vTeamBoard = board.find("#visitorTeam");
+            hTeamBoard.text(activeGameData.hTeam.triCode);
+            hTeamBoard.css("background-image", getTeamCardCss(hTeam.teamLogo));
+            hTeamBoard.css("background-color", hTeam.mainColours[0]);
+            vTeamBoard.text(activeGameData.vTeam.triCode);
+            vTeamBoard.css("background-image", getTeamCardCss(vTeam.teamLogo));
+            vTeamBoard.css("background-color", vTeam.mainColours[0]);
+            board.find("#homeTeamScore").text(hTeamData.score);
+            board.find("#visitorTeamScore").text(vTeamData.score);
+            updateScore();
+          }
+        );
+      }
 
-        function updateScore()
-        {
-            $.get(
-                `http://data.nba.net/10s/prod/v1/${dateString}/scoreboard.json`,
-                ( data ) => {
-                    const activeGame  = data.games.find((game)=>{
-                        return game.isGameActivated;
-                    });
-                    board.find('#homeTeamScore').text(activeGame.hTeam.score);
-                    board.find('#visitorTeamScore').text(activeGame.vTeam.score);
-                }
-            );
-            setTimeout(updateScore, 4000);
-        }
+      function updateScore() {
+        $.get(
+          `http://data.nba.net/10s/prod/v1/${dateString}/scoreboard.json`,
+          (data) => {
+            const activeGame = data.games.find((game) => {
+              return game.isGameActivated;
+            });
+            board.find("#homeTeamScore").text(activeGame.hTeam.score);
+            board.find("#visitorTeamScore").text(activeGame.vTeam.score);
+          }
+        );
+        setTimeout(updateScore, 4000);
+      }
 
-        function getFormattedDate()
-        {
-            const today = new Date();
-            var mm = today.getMonth() + 1;
-            var dd = today.getDate();
-            return [today.getFullYear(),
-                    (mm>9 ? '' : '0') + mm,
-                    (dd>9 ? '' : '0') + dd
-                    ].join('');
-        };
+      function getFormattedDate() {
+        const today = new Date();
+        var mm = today.getMonth() + 1;
+        var dd = today.getDate();
+        return [
+          today.getFullYear(),
+          (mm > 9 ? "" : "0") + mm,
+          (dd > 9 ? "" : "0") + dd,
+        ].join("");
+      }
 
-        function getTeamCardCss(image)
-        {
-            return `linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.4) 80%, rgba(255,255,255,0.3) 100%), url("${image}")`
-        }
+      function getTeamCardCss(image) {
+        return `linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.4) 80%, rgba(255,255,255,0.3) 100%), url("${image}")`;
+      }
 
-        initBoard();
-        
+      initBoard();
     </script>
-</body>
+  </body>
 </html>
