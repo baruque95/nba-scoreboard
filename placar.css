@@ -1,28 +1,57 @@
+@font-face {
+  font-family: "Basketball";
+  src: url("resources/fonts/Basketball.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .placar {
-    color: white;
-    background-color: rgb(92, 91, 91);
-    background-size: auto;
-    font-size: 4rem;
-    border: 5px solid rgb(255, 196, 0);
-    border-style: groove;
-    border-radius: 10px;
-    font-family: Helvetica;
-    text-align: center;
-    vertical-align: middle;
+  color: snow;
+  background-color: rgb(92, 91, 91);
+  background-size: auto;
+  border: 7px solid rgb(113, 111, 106);
+  border-style: groove;
+  border-radius: 10px;
+  font-size: 4rem;
+  font-family: Basketball;
+  font-weight: bold;
+  letter-spacing: 6px;
+  text-align: center;
+  text-shadow: 4px 3px #1d1a1a;
+  vertical-align: middle;
 }
 
 #homeTeam {
-    background-color: rgb(141, 35, 16);
-    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.4) 80%, rgba(255,255,255,0.3) 100%);
+  background-color: rgb(141, 35, 16);
+  background-image: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
 }
 
 #visitorTeam {
-    background-color: rgb(0, 122, 221);
-    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.4) 80%, rgba(255,255,255,0.3) 100%);
+  background-color: rgb(0, 122, 221);
+  background-image: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
 }
 
-.teamCards{
-    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.4) 80%, rgba(255,255,255,0.3) 100%);
-    padding: 0px 15px;
-    background-size: 150%;
+.teamCards {
+  background-image: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  padding: 0px 15px;
+  background-size: 150%;
+  background-position: 130% 50%;
 }
