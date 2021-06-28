@@ -51,7 +51,8 @@
     rgba(0, 0, 0, 0.4) 80%,
     rgba(255, 255, 255, 0.3) 100%
   );
+  background-repeat: repeat, no-repeat;
   padding: 0px 15px;
   background-size: 150%;
-  background-position: 130% 50%;
+  background-position: 140% 50%;
 }
